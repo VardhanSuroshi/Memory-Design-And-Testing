@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      CADENCE
+HostName                       cad29
+ProcessIdentifier              4124
+ProcessCreationTime_UTC        1681709056
+ProcessCreationTime_Readable   Mon Apr 17 10:54:16 2023 IST
+AppIdentifier                  OA File System Design Manager
+OSType                         unix
+ReasonForPlacingEditLock       OpenAccess edit lock
+FilePathUsedToEditLock         /home/CADENCE/Desktop/SRAM_163_109/isolation/schematic/sch.oa.cdslck
+TimeEditLocked                 Mon Apr 17 11:24:02 2023 IST
