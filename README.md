@@ -4,7 +4,7 @@
 
 ### About :
 
-This is a project report submitted by Vardhan Suroshi to Prof. Mahesh Awati ,Department of Electronics and Communication Engineering PES UNIVERSITY in the 6th semester for the course "Memory Design and Testing" (Course Code: UE20EC343) during the academic year 2022-23 The project involves the design of a 4X4 SRAM Memory Array using Cadence Virtuoso.
+This is a project report submitted by Vardhan Suroshi to Prof. Mahesh Awati, Department of Electronics and Communication Engineering PES UNIVERSITY in the 6th semester for the course "Memory Design and Testing" (Course Code: UE20EC343) during the academic year 2022-23 The project involves the design of a 4X4 SRAM Memory Array using Cadence Virtuoso.
 
 ## Table of Contents
 
