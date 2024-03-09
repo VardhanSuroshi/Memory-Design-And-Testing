@@ -43,8 +43,76 @@ Jan-March 2023
 
 
 ## 1.1 Introduction :
-SRAM, or Static Random Access Memory, is a widely used type of volatile memory in computer systems, microprocessors, and handheld devices due to its high speed and low power consumption. At the heart of SRAM technology lies the SRAM cell, also known as the 6T SRAM cell. Comprising six MOSFETs, the SRAM cell uses latching circuitry, or flip-flops, to store each bit of data. This innovative storage approach makes SRAM cells ideal for use in cache memories, where fast access to frequently used data is critical. In this context, SRAM cells offer an advantage over other types of volatile memory, such as Dynamic Random Access Memory (DRAM), which is slower and requires periodic refresh cycles. This makes SRAM cells a fundamental building block of modern computing systems and a key technology for achieving high-speed data processing.
 
+
+
+<p align="center">
+  <img src="https://github.com/VardhanSuroshi/Memory-Design-And-Testing/assets/132068498/2bd9162e-16e1-4c0f-8dfa-0384a5e04e2f" alt="Image" width="600">
+</p>
+
+
+In modern computer systems, various types of memory are employed to store and manage data. These memories can be broadly categorized into the following category 
+
+
+<p align="center">
+  <img src="https://github.com/VardhanSuroshi/Memory-Design-And-Testing/assets/132068498/d9cfea6b-2500-41f3-807f-85c6cdd2c11a" alt="Image" width="600">
+</p>
+
+### Volatile Memory
+
+Volatile memory is temporary storage that loses its contents when the power is turned off. The primary volatile memory types include RAM. RAM is a fast, volatile memory used for temporary data storage. It allows quick read-and-write access, making it essential for active applications and the operating system.
+There are mainly two kinds of RAM:
+
+1. **Dynamic Random Access Memory (DRAM):** DRAM is a type of RAM that stores each bit of data in a separate capacitor within an integrated circuit. It requires periodic refresh cycles to maintain data integrity.
+
+2. **Static Random Access Memory (SRAM):** SRAM is another form of volatile memory that does not require refreshing. It is often used for cache memory in CPUs due to its faster access times compared to DRAM.
+
+### Non-volatile Memory
+
+Non-volatile memory retains its data even when power is turned off. Common types of non-volatile memory include:
+
+1. **Read-Only Memory (ROM):** ROM is used to store permanent data, typically in firmware and software. It is non-volatile and is not easily modified.
+
+2. **Flash Memory:** Flash memory is a type of non-volatile storage that can be electrically erased and reprogrammed. It is commonly used in USB drives, SSDs, and memory cards.
+
+
+## Static Random Access Memory (SRAM)
+
+SRAM is a type of volatile memory that uses bistable latching circuitry to store each bit. Unlike DRAM, SRAM does not require refreshing, making it faster and more energy-efficient. SRAM cells offer an advantage over other types of volatile memory, such as Dynamic Random Access Memory (DRAM), which is slower and requires periodic refresh cycles. This makes SRAM cells a fundamental building block of modern computing systems and a key technology for achieving high-speed data processing.
+
+
+### Applications of SRAM
+
+SRAM is widely used in various applications due to its speed, low power consumption, and suitability for cache memory. Some key applications include:
+
+1. **Cache Memory:** SRAM is commonly used as cache memory in CPUs to provide fast access to frequently used data.
+
+2. **Register Files:** SRAM is used in register files within microprocessors for storing temporary data during computation.
+
+3. **Networking Devices:** SRAM is employed in networking devices for buffering and storing routing tables.
+
+4. **Embedded Systems:** SRAM finds applications in embedded systems, providing quick access to critical data.
+
+
+
+
+
+## Project Objectives
+The primary objective of this project is to gain a comprehensive understanding of Static Random Access Memory (SRAM) by designing a complete 6T SRAM cell, including its peripheral circuitry, using Cadence tools on the 180nm technology node (GPDK180). The project aims to explore various aspects of SRAM design with a focus on optimizing read and write stability, transistor sizing for enhanced data stability, and the design of peripheral circuits to achieve faster read and write operations
+
+
+The project aims not only to achieve the defined objectives but also to foster a collaborative environment for knowledge sharing and continuous improvements. Feel free to explore the repository, contribute, raise issues, and engage in discussions as we work together to achieve the project goals.
+
+
+# SRAM Memory Architecture
+
+
+<p align="center">
+  <img src="https://github.com/VardhanSuroshi/Memory-Design-And-Testing/assets/132068498/88071ae3-79a3-4988-8edc-d381d4e3c322" alt="Image" width="600">
+</p>
+
+
+---------------------------------------- work in progress ---------------------------------------------------
 
 <div style="display: flex; justify-content: space-between; align-items: center;">
     <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image2.png" alt="Image 2" style="width: 40%;">
