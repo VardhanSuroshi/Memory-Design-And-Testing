@@ -53,11 +53,6 @@ Jan-March 2023
 
 In modern computer systems, various types of memory are employed to store and manage data. These memories can be broadly categorized into the following category 
 
-
-<p align="center">
-  <img src="https://github.com/VardhanSuroshi/Memory-Design-And-Testing/assets/132068498/d9cfea6b-2500-41f3-807f-85c6cdd2c11a" alt="Image" width="600">
-</p>
-
 ### Volatile Memory
 
 Volatile memory is temporary storage that loses its contents when the power is turned off. The primary volatile memory types include RAM. RAM is a fast, volatile memory used for temporary data storage. It allows quick read-and-write access, making it essential for active applications and the operating system.
@@ -75,8 +70,9 @@ Non-volatile memory retains its data even when power is turned off. Common types
 
 2. **Flash Memory:** Flash memory is a type of non-volatile storage that can be electrically erased and reprogrammed. It is commonly used in USB drives, SSDs, and memory cards.
 
+----
 
-## Static Random Access Memory (SRAM)
+### Static Random Access Memory (SRAM)
 
 SRAM is a type of volatile memory that uses bistable latching circuitry to store each bit. Unlike DRAM, SRAM does not require refreshing, making it faster and more energy-efficient. SRAM cells offer an advantage over other types of volatile memory, such as Dynamic Random Access Memory (DRAM), which is slower and requires periodic refresh cycles. This makes SRAM cells a fundamental building block of modern computing systems and a key technology for achieving high-speed data processing.
 
@@ -107,17 +103,54 @@ The project aims not only to achieve the defined objectives but also to foster a
 # SRAM Memory Architecture
 
 
+
+The SRAM memory architecture employs a systematic arrangement of cells, word lines, and bit lines, all orchestrated through precise address decoding. The design facilitates efficient read and write operations, crucial for the reliable functioning of SRAM in various computing applications.
+
 <p align="center">
   <img src="https://github.com/VardhanSuroshi/Memory-Design-And-Testing/assets/132068498/88071ae3-79a3-4988-8edc-d381d4e3c322" alt="Image" width="600">
 </p>
 
 
----------------------------------------- work in progress ---------------------------------------------------
+### SRAM Cell
+
+- The SRAM memory architecture is structured around the fundamental unit known as the SRAM cell. This cell, typically a 6T configuration, holds a bit of data, representing either a 1 or 0. The architecture is designed for efficient data storage and retrieval, with specific components contributing to its functionality.
 
 <div style="display: flex; justify-content: space-between; align-items: center;">
     <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image2.png" alt="Image 2" style="width: 40%;">
     <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image3.png" alt="Image 3" style="width: 40%;">
 </div>
+
+
+### Word Lines and Bit Lines
+
+- **Word Lines (WLs):** Horizontal lines, exclusively driven from outside the storage array, are termed word lines. These play a crucial role in selecting rows within the storage array.
+
+- **Bit Lines:** Vertical lines facilitate the flow of data into and out of cells and are appropriately named bit lines. These serve as conduits for data manipulation and access.
+
+### Address Decoding
+
+- The row and column (or groups of columns) to be selected within the storage array are determined through the decoding of binary address information. This addressing mechanism ensures precise access to the desired data within the SRAM architecture.
+
+### Cell Access
+
+- An SRAM cell is accessed for reading or writing by selectively activating its corresponding row and column. This targeted access allows for the retrieval or modification of specific bits of data within the SRAM storage array.
+
+### Write Driver Circuits
+
+- Write driver circuits play a vital role in the writing process. They force one of the bit-lines to zero while maintaining the pre-charged value on the other bit-line. This controlled manipulation ensures accurate data storage within the SRAM cell.
+
+### Read Circuitry with Sense Amplifier
+
+- The read circuitry includes a sense amplifier, a crucial component that amplifies the small voltage swing on bit lines to recognizable logic levels. This amplification is essential for reliable data interpretation during read operations.
+
+
+
+
+
+
+
+---------------------------------------- work in progress ---------------------------------------------------
+
 
 
 
