@@ -61,6 +61,8 @@ There are mainly two kinds of RAM:
 1. **Dynamic Random Access Memory (DRAM):** DRAM is a type of RAM that stores each bit of data in a separate capacitor within an integrated circuit. It requires periodic refresh cycles to maintain data integrity.
 
 2. **Static Random Access Memory (SRAM):** SRAM is another form of volatile memory that does not require refreshing. It is often used for cache memory in CPUs due to its faster access times compared to DRAM.
+   
+--------
 
 ### Non-volatile Memory
 
@@ -90,7 +92,7 @@ SRAM is widely used in various applications due to its speed, low power consumpt
 4. **Embedded Systems:** SRAM finds applications in embedded systems, providing quick access to critical data.
 
 
-
+--------
 
 
 ## Project Objectives
@@ -99,6 +101,7 @@ The primary objective of this project is to gain a comprehensive understanding o
 
 The project aims not only to achieve the defined objectives but also to foster a collaborative environment for knowledge sharing and continuous improvements. Feel free to explore the repository, contribute, raise issues, and engage in discussions as we work together to achieve the project goals.
 
+--------
 
 # SRAM Memory Architecture
 
@@ -109,6 +112,7 @@ The SRAM memory architecture employs a systematic arrangement of cells, word lin
 <p align="center">
   <img src="https://github.com/VardhanSuroshi/Memory-Design-And-Testing/assets/132068498/88071ae3-79a3-4988-8edc-d381d4e3c322" alt="Image" width="600">
 </p>
+
 
 
 ### SRAM Cell
