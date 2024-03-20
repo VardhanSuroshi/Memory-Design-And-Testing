@@ -1,6 +1,4 @@
 
-
-
 <p align="center">
   <img src="https://github.com/VardhanSuroshi/Memory-Design-And-Tesing/assets/132068498/7fcb37de-2402-4ed4-92d1-5aa93e5e41a5" alt="Image" width="1000" height="500">
 </p>
@@ -120,69 +118,242 @@ The SRAM memory architecture employs a systematic arrangement of cells, word lin
 - The SRAM memory architecture is structured around the fundamental unit known as the SRAM cell. This cell, typically a 6T configuration, holds a bit of data, representing either a 1 or 0. The architecture is designed for efficient data storage and retrieval, with specific components contributing to its functionality.
 
 <div style="display: flex; justify-content: space-between; align-items: center;">
-    <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image2.png" alt="Image 2" style="width: 40%;">
+    <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image21.png" alt="Image 2" style="width: 40%;">
     <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image3.png" alt="Image 3" style="width: 40%;">
 </div>
 
 
-### Word Lines and Bit Lines
+---------------------
 
-- **Word Lines (WLs):** Horizontal lines, exclusively driven from outside the storage array, are termed word lines. These play a crucial role in selecting rows within the storage array.
 
-- **Bit Lines:** Vertical lines facilitate the flow of data into and out of cells and are appropriately named bit lines. These serve as conduits for data manipulation and access.
+### Pre-charge circuit
+- Pre-circuit is used to pre-charge the bit lines to Vdd before the Read
+operation. It consists of: 
+   + **Equalizer** transistor which reduces the
+required pre-charge time by ensuring that both bit lines are at nearly
+equal voltages even if they are not pre-charged to Vdd.
 
-### Address Decoding
+   + **Bias transistors** that pull each of the bit lines to Vdd.
+
+<p align="center">
+  <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image22.png" alt="Image" width="600">
+</p>
+
+---------
+
+###  Isolation circuit
+- An isolation circuit is used to isolate the sense amplifier from the bit lines once a small change on the bit lines is detected.
+
+<p align="center">
+  <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image23.png" alt="Image" width="600">
+</p>
+
+----------------
+
+### Sense Amplifier circuit
+- The sense amplifier is responsible for detecting the value stored in the SRAM cell during the read operation and displaying that value at the output.
+- The read circuitry includes a sense amplifier, a crucial component that amplifies the small voltage swing on bit lines to recognizable logic levels. This amplification is essential for reliable data interpretation during read operations.
+
+<p align="center">
+  <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image24.png" alt="Image" width="600">
+</p>
+
+------------------
+
+### Write driver circuit
+- The write driver circuit is responsible for writing the data onto the bit lines BL and BL' during the write operation
+- Write driver circuits play a vital role in the writing process. They force one of the bit-lines to zero while maintaining the pre-charged value on the other bit-line. This controlled manipulation ensures accurate data storage within the SRAM cell.
+
+<p align="center">
+  <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image25.png" alt="Image" width="600">
+</p>
+
+
+------------------
+
+
+### Address Decoder circuit
 
 - The row and column (or groups of columns) to be selected within the storage array are determined through the decoding of binary address information. This addressing mechanism ensures precise access to the desired data within the SRAM architecture.
 
-### Cell Access
-
-- An SRAM cell is accessed for reading or writing by selectively activating its corresponding row and column. This targeted access allows for the retrieval or modification of specific bits of data within the SRAM storage array.
-
-### Write Driver Circuits
-
-- Write driver circuits play a vital role in the writing process. They force one of the bit-lines to zero while maintaining the pre-charged value on the other bit-line. This controlled manipulation ensures accurate data storage within the SRAM cell.
-
-### Read Circuitry with Sense Amplifier
-
-- The read circuitry includes a sense amplifier, a crucial component that amplifies the small voltage swing on bit lines to recognizable logic levels. This amplification is essential for reliable data interpretation during read operations.
+<p align="center">
+  <img src="https://github.com/VardhanSuroshi/Memory-Design-And-Testing/assets/132068498/ec9339af-7f44-495b-a531-fc71a5b6b892" alt="Image" width="600">
+</p>
 
 
+---------------------------
 
 
+### SRAM Architecture 
 
+- This is the single-column SRAM block with all the peripheral devices. 
 
-
----------------------------------------- work in progress ---------------------------------------------------
+<p align="center">
+  <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image26.png" alt="Image" width="600">
+</p>
 
 
 
 
-**The two basic requirements which dictate the W/L ratios are:**\
-a) **Read upset:** The data-read operation should not destroy the
-stored information in the SRAM cell.
-The cell ratio (beta) should be less than 1.5 to for the proper functioning of SRAM cell 
-b) **Write upset**:The cell should allow the modification of the stored information during the data-write phase.
+---------------------------------
 
- These conflicting requirements for read and write operations are satisfied by sizing the bit cell transistors to provide stable read and write operations.
 
- To satisfy requirement (a), we come up with the cell ratio, β for the read operation which is given by,
 
+
+
+# Design Methodology
+
+In this section, presents the design methodology followed during the design of peripheral devices and the 6T SRAM cell. A brief explanation of the working of these devices has been provided wherever necessary to facilitate understanding of the design methodology
+
+
+## SRAM Cell Design 
+
+<p align="center">
+  <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image21.png" alt="Image" width="600">
+</p>
+
+
+We should first understand the working of the SRAM cell and the importance of different constraints on the device sizing for read and write operations.
+
+## Write operation :
+
+The following is the explanation for writing "0" logic into the SRAM which in turn emphasises the need for stronger access transistors
+
++ Let us consider writing a logic "0" to a cell that has stored a logic "1".
+
++ The write driver makes BL=0V and BL'= VDD as logic '0' is written into the cell. The write driver circuit provides the required voltage to BL and BL' ( For write 0, BL = 0, BL' = 1 and for write 1, BL=1, BL' = 0).
+
++ Now the corresponding address line is enabled by the decoder circuit which makes WL=1.
+
++ The word line ( WL ) is made high and hence bit lines BL and BL' are connected to the SRAM cell through the access transistors.
+
++ The corresponding data is written into the cell ( Q = 0 for write logic 0 and Q = 1 for write logic 1 ).
+
++ Q' side of the cell cannot be pulled high enough to ensure the writing of '1' due to the sizing constraint imposed by the read stability. It ensures that this voltage is kept below 0.4V.
+
++ Hence the new value of the cell has to be written through the transistor M6. Data '0' will be written into the cell if node Q is pulled down, below the threshold voltage of M1 to turn it OFF
+
+  
+------------------------------------
+
+**For a successful write operation, access transistors should be stronger than the pull-up transistors which are taken care of by the pull-up ratio.** 
+
+
+--------------------
+
+## Read operation
+For understanding read operation, we consider the SRAM cell is holding logic "1".  
+
++ Considering, that logic "1" is stored in the SRAM cell (Q =1 and Q' = 0).
+
+<p align="center">
+  <img src="https://github.com/VardhanSuroshi/Memory-Design-And-Testing/assets/132068498/c1efd6e8-44b3-49ac-8334-95fd304352d9" alt="Image" width="600">
+</p>
+
+
++ Initially the bit lines BL and BL' are pre-charged to VDD. Then the word line (WL) is made high. So the transistors M1, M4, M5 and M6 (Refer to above figure) will turn ON.
+
+
++ Therefore BL' gets discharged through the series transistors M5-M1 and BL will remain in its pre-charged state.
+
++ As the voltage difference  (ΔV) between the two-bit lines builds up, the sense amplifier is activated which pulls the output level to logic "1". Therefore reading logic "1" from the cell is completed.
+
+The key design issue for the data-read operation is to guarantee that the voltage ΔV does not exceed the threshold of M3, so that the transistor M3 remains turned OFF during the read phase.
+
+
+------------------------------------
+
+**To prevent this, the resistance of M5 should be made larger than that of M1 to prevent ΔV from turning on M3 (Not destroying the stored data). This is defined as the cell ratio.**
+
+---------------------------------------------
+
+
+The basic requirements which dictate the dimensions of the transistor (W/L) ratios are:
+- a) The data-read operation should not destroy the stored information in the SRAM Cell i.e., Read Upset
+- b) The cell should allow the modification of the stored information during the data-write phase., i.e. Write Upset.
+
+
+**The two most important parameters which decide the Transistor size of the SRAM cell are:**
+  
+  a) **Cell Ratio:**
+  - The data-read operation should not destroy the stored information in the SRAM cell. i.e. Read upset.
+  - The cell ratio β (beta) should be less than 1.5 for the proper functioning of SRAM cell.
+  
+  The cell ratio, β for the read operation which is given by,
 ```
- Cell ratio,β ={ (W\L) pull down transistors } / {(W\L) access transistor} 
+ Cell ratio, β ={ (W\L) pull down transistors } / {(W\L) access transistor} 
 ```
-To satisfy requirement (b), we come up with the pull-up ratio, PR for
-the write operation which is given by,
+
+  b) **Pull-Up Ratio:**
+  - The cell should allow the modification of the stored information during the data-write phase.
+  - PR should be as small as possible.(meaning access transistor M6 should be strong compared M4.)
+
+The pull-up ratio, P.R for the write operation is given by,
 ```
 Pull-up ratio, P.R ={ (W\L) pull up transistors } / {(W\L) access transistor } 
 ```
-## Implementation and Simulation Results 
+  
+**These conflicting requirements for read and write operations are satisfied by sizing the bit cell transistors to provide stable read and write operations.**
+ 
+## Stability of SRAM cell
+
+The stability of the SRAM cell can be described by the 'Butterfly curve' which is obtained by superimposing the voltage transfer curves (VTC) of the two inverters of the memory cell. The stability of the SRAM cell can be analyzed by measuring the Static Noise Margin (SNM). SNM is the measure of the stability of the SRAM cell to hold its data against noise. The Stability of the cell is given by the size of the maximum square box that can fit inside the Butterfly wing.
+
+Butterfly curve for SRAM Cell :
+
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image13.png" alt="Image 2" style="width: 40%;">
+    <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image14.png" alt="Image 3" style="width: 40%;">
+</div>
 
 
- **1. We have implemented a 6T SRAM with CR=1.25 and PR=0.85 using
-180nm technology by keeping the length of all devices at 180nm. We
- verified the Read and Write operation and also plotted the Butterfly
- curve for Hold state and Read state.**
+Figure: a) Butterfly curve for SRAM Cell for hold state. b) Butterfly plot for read state.
+
+## Hold State Stability :
+
+Initial condition WL=0 and Access Transistors M5 and M6 are OFF
+
+- As access Transistors are in the OFF state the Cell is isolated from BL and BL’, Therefore there is no possibility of the state getting changed, as there will be fewer chances of Noise interference.
+- If we plot the VTC of INV1 and INV2 and super-imposing the VTC's we get a butterfly curve.
+- As there is no Noise getting added, the Inverters are working with a perfect VTC as shown in above figure. The Hold state Static Noise Margin (SNM) is expected to be Maximum
+
+## Read State Stability :
+
+Consider the following READ State: WL=1, Access Transistors M5 and M6 are OFF and Bit lines are Pre-charged to VDD
+
+
+- In READ, In order to find the SNM of the cell, we can measure the side lengths of both of noise margin squares, and the smaller of the two lengths is the SNM of the SRAM cell for read state.
+- In an ideal case(no variations considered), these squares should be of equal size,and therefore only one square would need to be considered, however considering variations and transistor mismatch, these curves may not be mirror images of each other, and therefore both squares should be considered.
+
+
+-----------------------------
+KeyPoints
+- The curve flattens during a read operation, reducing the box size and thus implying reduced stability.
+- The larger the box, the higher the β value and hence greater the stability.
+------------------------
+
+
+
+# Experimental Setup and Simulation Results 
+
+
+ **The 6T SRAM cell has been designed for the following specifications. The 6T SRAM cell is designed for a CR=1.25 and PR=0.85 for 180nm technology. To minimize area, all the transistors are sized to a minimum length i.e. 180nm. External capacitance of 120fF is connected to BL and BL' modelling the parasitic capacitance of BL and BL'**
+
+
+```
++--------------------------------+-----------------------------------+
+|  **Length of all MOS**           | **180nm**                       |
++=================================+===================================+
+| **Width of PMOS devices (wp)**  |  **Minimum width**               |
++--------------------------------+-----------------------------------+
+|  **Access transistors width      | **1.2 x wp**                    |
+|  (wa)**                          |                                 |
++---------------------------------+-----------------------------------+
+| **Width of Pull down NMOS       |  **1.5 x wa**                    |
+|  transistors (wn)**             |                                  |
++-----------------------------------+--------------------------------+
+```
+
 
 Circuit diagram of SRAM cell :
 <p align="center">
@@ -193,87 +364,46 @@ Circuit diagram of SRAM cell :
 Width of access transistors Wa= 470nm,
 Width of pulldown transistors Wn= 590nm)
 
-## 2. Write operation :
 
-+ Initially word line WL is high and hence bit lines BL and Bl' are
-connected to the SRAM cell.
+## Write operation analysis
 
-+ The write driver circuit provides the required voltage to BL and
-BL' ( For write 0, BL = 0, BL' = 1 and for write 1, BL=1, BL' = 0).
+### Write logic "0" operation
 
-+ The corresponding data will be then written into the cell (Q = 0 for
-write 0 and Q = 1 for write 1).
+Testbench Schematic for Write "0" Operation :
 
-For a successful write operation, access transistors should be stronger
-than the pull-up transistors which are taken care of by the pull-up ratio.
-
-### 2.1 Write '0' operation
-
-Now let us consider writing a "0" to a cell that is storing a "1".
-
-+ The write driver makes BL=0V and BL'= VDD as '0' is written into the
-cell.
-
-+ Now the address decoder makes WL=1.
-
-+ Q' side of the cell cannot be pulled high enough to ensure the writing
-of '1' due to sizing constraint
-
-+ imposed by the read stability. It ensures that this voltage is kept
-below 0.4V.
-
-+ Hence the new value of the cell has to be written through the transistor
-M6 . Data '0' will be written into the cell if node Q is pulled down, below the threshold voltage of M1 to  turn it OFF
-
-
- Schematic for Write 0 Operation :
  <p align="center">
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image5.png" alt="Image" width="600">
 </p>
 
+-----------------------------------------------------
 
-
-Timing diagram for Write '0' :
+Timing diagram for Write '0' Operation:
 <p align="center">
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image6.png" alt="Image" width="600">
 </p>
 
 
 
-### 2.2 Write '1' operation
+### Write logic "1" operation
 
-schematic :
+Testbench Schematic schematic for Write "1" Operation:
+
 <p align="center">
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image7.png" alt="Image" width="600">
 </p>
 
 
-Timing diagram for Write '1'
+Timing diagram for Write "1" Operation:
 
 <p align="center">
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image8.png" alt="Image" width="600">
 </p>
 
+## Read operation analysis
 
+### Read logic "1" operation
 
-
-## 3. Read operation
-+ To perform a read operation, the memory cell should have some value.
-Consider, that '1' is stored in the memory cell (Q =1 and Q' = 0).
-
-+ Initially the bit lines BL and BL' are pre-charged to Vdd. Then the
-word line WL is made high. So the transistors M1, M4, M5 and M6 (From
-Fig 1) will turn ON.
-
-+Therefore BL' gets discharged through the series transistors M5-M1 and
-BL will remain in its pre-charged state.
-
-+ As the difference between the two-bit lines builds up, the sense
-amplifier is activated which gives output i.e. '1' is read from the
-memory cell.
-
-### Read '1' operation :
-schematic Read 1 operation :
+Testbench Schematic for Read "1" operation:
 
 
 <p align="center">
@@ -282,43 +412,33 @@ schematic Read 1 operation :
 
 
 
-Timing diagram for Read '1'
+Timing diagram for Read "1" operation:
 
 <p align="center">
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image10.png" alt="Image" width="600">
 </p>
 
 
-### Read '0' operation
-schematic : 
+### Read logic "0" operation
+
+Testbench Schematic for Read "0" operation:
 <p align="center">
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image11.png" alt="Image" width="600">
 </p>
 
 
 
-Timing diagram for Read '0'
+Timing diagram for Read "0" operation:
+
  <p align="center">
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image12.png" alt="Image" width="600">
 </p>
- 
-## 4. Stability of SRAM cell**
 
-The stability of the SRAM cell can be described by the 'Butterfly curve' which is obtained by superimposing the voltage transfer curves (VTC) of the two inverters of the memory cell. The stability of the SRAM cell can be analyzed by measuring the Static Noise Margin (SNM). SNM is the measure of the stability of the SRAM cell to hold its data against noise. The Stability of the cell is given by the size of the maximum square box that can fit inside the Butterfly wing.
+-------------------------------------------------------
 
-Butterfly curve for SRAM Cell :
-<p align="center">
-  <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image13.png" alt="Image" width="300">
-</p>
+## Stability Analysis
 
-
-Butterfly plot for read stability :
-
-<p align="center">
-  <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image14.png" alt="Image" width="300">
-</p>
-
-### Hold state
+### Hold state Stability Analysis
 
 
 <p align="center">
@@ -332,14 +452,14 @@ Butterfly curve for Hold state:
 </p>
 
 
-
-WL = 0 and hence access transistors are OFF. Therefore, the cell is isolated from BL and BL' and hence there is no possibility of state changing since there will be less noise getting added. Since there is no noise getting added, the inverters are working with the perfect VTC and hence Hold state Static noise margin is expected to be maximum.
 ```
  SNM = min (max(SNM1),max( SNM2) )
 = min (578.869mV, 585.075mV)
 = 578.869mV**
 ```
-### Read state
+
+
+### Read state Stability Analysis
 
 
 <p align="center">
@@ -349,20 +469,26 @@ WL = 0 and hence access transistors are OFF. Therefore, the cell is isolated fro
 
 Butterfly curve for Read state
 
-
 <p align="center">
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image18.png" alt="Image" width="600">
 </p>
 
-
-
-WL = 1 and hence access transistors are ON. Therefore, the cell is connected to BL and BL' and hence there is a possibility of noise getting added. Therefore, the curve flattens during the read operation hence reducing the box size. Hence, the stability is reduced.
 ```
  SNM = min (max(SNM1),max( SNM2) )
  = min (225.417mV, 218.623mV)
  = 218.623 mV
 ```
-**2. We have designed a pre-charge circuit to charge a BL and BL' with capacitance of 120f in 0.5n Seconds**
+
+
+
+
+
+---------------------------------------- work in progress ---------------------------------------------------
+
+
+## Peripheral Device Design and Analysis
+
+**We have designed a pre-charge circuit to charge a BL and BL' with capacitance of 120f in 0.5n Seconds**
 
 <p align="center">
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image18.png" alt="Image" width="600">
@@ -379,21 +505,12 @@ Timing diagram :
 </p>
 
 
+-----------------------------------------------
 
-**3. We have designed a 6T SRAM cell with the following specifications. External capacitance of 120fF is connected to BL and BL' to account for the parasitic capacitance of BL and BL'**
-```
-+--------------------------------+-----------------------------------+
-|  **Length of all MOS**           | **180nm**                       |
-+=================================+===================================+
-| **Width of PMOS devices (wp)**  |  **Minimum width**               |
-+--------------------------------+-----------------------------------+
-|  **Access transistors width      | **1.2 x wp**                    |
-|  (wa)**                          |                                 |
-+---------------------------------+-----------------------------------+
-| **Width of Pull down NMOS       |  **1.5 x wa**                    |
-|  transistors (wn)**             |                                  |
-+-----------------------------------+--------------------------------+
-```
+****
+
+
+
 **We have also designed the peripheral circuits -- Pre-charge circuit, Isolation circuit, Sense Amplifier and Write driver circuit We have also performed the simulation of Read and Write operation**
 
 ## 6T SRAM Cell
@@ -407,13 +524,6 @@ Circuit diagram of 6T SRAM cell (Width of pull-up transistors = 400nm, Width of 
 
 
 
-### 1. Pre-charge circuit
-Pre-circuit is used to pre-charge the bit lines to Vdd before the Read
-operation. It consists of: a) Equalizer transistor which reduces the
-required pre-charge time by ensuring that both bit lines are at nearly
-equal voltages even if they are not pre-charged to Vdd.
-
-b\) Bias transistors that pull each of the bit lines to Vdd.
 
 <p align="center">
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image22.png" alt="Image" width="600">
