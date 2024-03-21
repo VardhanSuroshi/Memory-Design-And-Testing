@@ -3,8 +3,8 @@
   <img src="https://github.com/VardhanSuroshi/Memory-Design-And-Tesing/assets/132068498/7fcb37de-2402-4ed4-92d1-5aa93e5e41a5" alt="Image" width="1000" height="500">
 </p>
 
-# Design of 4X4 SRAM Memory Array Using Cadence Virtuoso
-### About :
+# Design of 4X4 16-bit SRAM Memory Array Using Cadence tool-chain
+# About
 
 This is a project report submitted by Vardhan Suroshi to Prof. Mahesh Awati, Department of Electronics and Communication Engineering PES UNIVERSITY in the 6th semester for the course "Memory Design and Testing" (Course Code: UE20EC343) during the academic year 2022-23 The project involves the design of a 4X4 SRAM Memory Array using Cadence Virtuoso built using GPDK 180nm
 
@@ -13,7 +13,8 @@ Prof. Mahesh Awati,
 Department of Electronics and Communication Engineering, PES UNIVERSITY,
 Electronic City, Bangalore-560100,
 Jan-March 2023
-## Table of Contents
+
+# Table of Contents
 
 - [Design of 4X4 SRAM Memory Array Using Cadence Virtuoso](#design-of-4x4-sram-memory-array-using-cadence-virtuoso)
 - [Implementation and Simulation Results](#implementation-and-simulation-results)
@@ -40,7 +41,7 @@ Jan-March 2023
 
 
 
-## 1.1 Introduction :
+# Introduction 
 
 
 
@@ -50,6 +51,8 @@ Jan-March 2023
 
 
 In modern computer systems, various types of memory are employed to store and manage data. These memories can be broadly categorized into the following category 
+
+-----------------
 
 ### Volatile Memory
 
@@ -76,6 +79,7 @@ Non-volatile memory retains its data even when power is turned off. Common types
 
 SRAM is a type of volatile memory that uses bistable latching circuitry to store each bit. Unlike DRAM, SRAM does not require refreshing, making it faster and more energy-efficient. SRAM cells offer an advantage over other types of volatile memory, such as Dynamic Random Access Memory (DRAM), which is slower and requires periodic refresh cycles. This makes SRAM cells a fundamental building block of modern computing systems and a key technology for achieving high-speed data processing.
 
+---------------
 
 ### Applications of SRAM
 
@@ -113,7 +117,7 @@ The SRAM memory architecture employs a systematic arrangement of cells, word lin
 
 
 
-### SRAM Cell
+## SRAM Cell
 
 - The SRAM memory architecture is structured around the fundamental unit known as the SRAM cell. This cell, typically a 6T configuration, holds a bit of data, representing either a 1 or 0. The architecture is designed for efficient data storage and retrieval, with specific components contributing to its functionality.
 
@@ -126,7 +130,7 @@ The SRAM memory architecture employs a systematic arrangement of cells, word lin
 ---------------------
 
 
-### Pre-charge circuit
+## Pre-charge circuit
 - Pre-circuit is used to pre-charge the bit lines to Vdd before the Read
 operation. It consists of: 
    + **Equalizer** transistor which reduces the
@@ -141,7 +145,7 @@ equal voltages even if they are not pre-charged to Vdd.
 
 ---------
 
-###  Isolation circuit
+## Isolation circuit
 - An isolation circuit is used to isolate the sense amplifier from the bit lines once a small change on the bit lines is detected.
 
 <p align="center">
@@ -150,7 +154,7 @@ equal voltages even if they are not pre-charged to Vdd.
 
 ----------------
 
-### Sense Amplifier circuit
+## Sense Amplifier circuit
 - The sense amplifier is responsible for detecting the value stored in the SRAM cell during the read operation and displaying that value at the output.
 - The read circuitry includes a sense amplifier, a crucial component that amplifies the small voltage swing on bit lines to recognizable logic levels. This amplification is essential for reliable data interpretation during read operations.
 
@@ -161,7 +165,7 @@ equal voltages even if they are not pre-charged to Vdd.
 
 ------------------
 
-### Write driver circuit
+## Write driver circuit
 - The write driver circuit is responsible for writing the data onto the bit lines BL and BL' during the write operation
 - Write driver circuits play a vital role in the writing process. They force one of the bit-lines to zero while maintaining the pre-charged value on the other bit-line. This controlled manipulation ensures accurate data storage within the SRAM cell.
 
@@ -173,7 +177,7 @@ equal voltages even if they are not pre-charged to Vdd.
 ------------------
 
 
-### Address Decoder circuit
+## Address Decoder circuit
 
 - The row and column (or groups of columns) to be selected within the storage array are determined through the decoding of binary address information. This addressing mechanism ensures precise access to the desired data within the SRAM architecture.
 
@@ -185,7 +189,7 @@ equal voltages even if they are not pre-charged to Vdd.
 ---------------------------
 
 
-### SRAM Architecture 
+## SRAM Architecture 
 
 - This is the single-column SRAM block with all the peripheral devices. 
 
@@ -216,7 +220,7 @@ In this section, presents the design methodology followed during the design of p
 
 We should first understand the working of the SRAM cell and the importance of different constraints on the device sizing for read and write operations.
 
-## Write operation :
+### Write operation :
 
 The following is the explanation for writing "0" logic into the SRAM which in turn emphasises the need for stronger access transistors
 
@@ -242,7 +246,8 @@ The following is the explanation for writing "0" logic into the SRAM which in tu
 
 --------------------
 
-## Read operation
+### Read operation
+
 For understanding read operation, we consider the SRAM cell is holding logic "1".  
 
 + Considering, that logic "1" is stored in the SRAM cell (Q =1 and Q' = 0).
@@ -295,12 +300,14 @@ Pull-up ratio, P.R ={ (W\L) pull up transistors } / {(W\L) access transistor }
 ```
   
 **These conflicting requirements for read and write operations are satisfied by sizing the bit cell transistors to provide stable read and write operations.**
+
+-------------------------
  
-## Stability of SRAM cell
+## SRAM cell Stability
 
 The stability of the SRAM cell can be described by the 'Butterfly curve' which is obtained by superimposing the voltage transfer curves (VTC) of the two inverters of the memory cell. The stability of the SRAM cell can be analyzed by measuring the Static Noise Margin (SNM). SNM is the measure of the stability of the SRAM cell to hold its data against noise. The Stability of the cell is given by the size of the maximum square box that can fit inside the Butterfly wing.
 
-Butterfly curve for SRAM Cell :
+Butterfly curve for SRAM Cell:
 
 <div style="display: flex; justify-content: space-between; align-items: center;">
     <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image13.png" alt="Image 2" style="width: 40%;">
@@ -310,7 +317,9 @@ Butterfly curve for SRAM Cell :
 
 Figure: a) Butterfly curve for SRAM Cell for hold state. b) Butterfly plot for read state.
 
-## Hold State Stability :
+------------------------
+
+### Hold State Stability
 
 Initial condition WL=0 and Access Transistors M5 and M6 are OFF
 
@@ -318,12 +327,15 @@ Initial condition WL=0 and Access Transistors M5 and M6 are OFF
 - If we plot the VTC of INV1 and INV2 and super-imposing the VTC's we get a butterfly curve.
 - As there is no Noise getting added, the Inverters are working with a perfect VTC as shown in above figure. The Hold state Static Noise Margin (SNM) is expected to be Maximum
 
-## Read State Stability :
+
+-----------------
+
+### Read State Stability
 
 Consider the following READ State: WL=1, Access Transistors M5 and M6 are OFF and Bit lines are Pre-charged to VDD
 
 
-- In READ, In order to find the SNM of the cell, we can measure the side lengths of both of noise margin squares, and the smaller of the two lengths is the SNM of the SRAM cell for read state.
+- In READ, To find the SNM of the cell, we can measure the side lengths of both of noise margin squares, and the smaller of the two lengths is the SNM of the SRAM cell for read state.
 - In an ideal case(no variations considered), these squares should be of equal size,and therefore only one square would need to be considered, however considering variations and transistor mismatch, these curves may not be mirror images of each other, and therefore both squares should be considered.
 
 
@@ -356,7 +368,7 @@ Consider the following READ State: WL=1, Access Transistors M5 and M6 are OFF an
 ```
 
 
-Circuit diagram of SRAM cell :
+Circuit diagram of SRAM cell:
 <p align="center">
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image4.png" alt="Image" width="600">
 </p>
@@ -365,6 +377,7 @@ Circuit diagram of SRAM cell :
 Width of access transistors Wa= 470nm,
 Width of pulldown transistors Wn= 590nm)
 
+---------------------------
 
 ## Write operation analysis
 
@@ -376,7 +389,6 @@ Testbench Schematic for Write "0" Operation :
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image5.png" alt="Image" width="600">
 </p>
 
------------------------------------------------------
 
 Timing diagram for Write '0' Operation:
 <p align="center">
@@ -384,6 +396,7 @@ Timing diagram for Write '0' Operation:
 </p>
 
 
+------------------------------
 
 ### Write logic "1" operation
 
@@ -399,6 +412,8 @@ Timing diagram for Write "1" Operation:
 <p align="center">
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image8.png" alt="Image" width="600">
 </p>
+
+--------------------------
 
 ## Read operation analysis
 
@@ -419,7 +434,7 @@ Timing diagram for Read "1" operation:
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image10.png" alt="Image" width="600">
 </p>
 
-
+-------------------------
 ### Read logic "0" operation
 
 Testbench Schematic for Read "0" operation:
@@ -459,6 +474,7 @@ Butterfly curve for Hold state:
 = 578.869mV**
 ```
 
+-----------------------------------
 
 ### Read state Stability Analysis
 
@@ -484,7 +500,7 @@ Butterfly curve for Read state
 
 
 
----------------------------------------- work in progress ---------------------------------------------------
+---------------------------------------
 
 
 ## Peripheral Device Design and Analysis
@@ -505,6 +521,9 @@ The timing diagram for the precharge circuit :
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image20.png" alt="Image" width="600">
 </p>
 
+
+-----------------------------------------
+
 ### Write Driver Circuit Analysis
 
 The write driver circuit was designed to have minimal latency. 
@@ -519,6 +538,7 @@ Timing diagram which is a simulation to find the time taken to generate the data
 
 The circuit took 0.5249ns to generate the data to be written i.e to produce the voltage difference on BL and BL'
 
+------------------------------------------
 
 ### Sense Amplifier Analysis.
 
@@ -546,6 +566,7 @@ The timing diagram for SRAM Architecture for Wrtie logic "1" operation followed 
 <p align="center">
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image27.png" alt="Image" width="600">
 </p>
+
 
 
 ## 4x4 (16-bit) Memory array
