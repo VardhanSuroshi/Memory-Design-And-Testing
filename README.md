@@ -155,8 +155,9 @@ equal voltages even if they are not pre-charged to Vdd.
 - The read circuitry includes a sense amplifier, a crucial component that amplifies the small voltage swing on bit lines to recognizable logic levels. This amplification is essential for reliable data interpretation during read operations.
 
 <p align="center">
-  <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image24.png" alt="Image" width="600">
+  <img src="https://github.com/VardhanSuroshi/Memory-Design-And-Testing/assets/132068498/20d01ab4-30c0-4812-b3c7-1a342ab89898" alt="Image" width="600">
 </p>
+
 
 ------------------
 
@@ -327,7 +328,7 @@ Consider the following READ State: WL=1, Access Transistors M5 and M6 are OFF an
 
 
 -----------------------------
-KeyPoints
+**Key Points**
 - The curve flattens during a read operation, reducing the box size and thus implying reduced stability.
 - The larger the box, the higher the β value and hence greater the stability.
 ------------------------
@@ -488,120 +489,94 @@ Butterfly curve for Read state
 
 ## Peripheral Device Design and Analysis
 
-**We have designed a pre-charge circuit to charge a BL and BL' with capacitance of 120f in 0.5n Seconds**
+### Pre-charge circuit Analysis
 
-<p align="center">
-  <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image18.png" alt="Image" width="600">
-</p>
+- **The pre-charge circuit in this project was designed to charge a BL and BL' with the capacitance of 120f with minimal charge time.** in 0.5n Seconds
 
-Pre-charge circuit (Width of the transistors = 12um) :
+Testbench schematic for Pre-charge circuit:
 <p align="center">
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image19.png" alt="Image" width="600">
 </p>
 
-Timing diagram :
+(Width of the transistors = 12um)
+
+The timing diagram for the precharge circuit :
 <p align="center">
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image20.png" alt="Image" width="600">
 </p>
 
+### Write Driver Circuit Analysis
+
+The write driver circuit was designed to have minimal latency. 
+
+
+
+Timing diagram which is a simulation to find the time taken to generate the data to be written on BL and BL' and check the latency of the write driver circuit.
+
+<p align="center">
+  <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image29.png" alt="Image" width="600">
+</p>
+
+The circuit took 0.5249ns to generate the data to be written i.e to produce the voltage difference on BL and BL'
+
+
+### Sense Amplifier Analysis.
+
+**The simulation was conducted for read operation to find the time it takes to sense 200 mV sense margin ( difference in voltage between BL and BL' after WL is  made HIGH )**
+
+<p align="center">
+  <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image28.png" alt="Image" width="600">
+</p>
+
+The circuit took 86.17ps to sense the 200mV sense margin.
 
 -----------------------------------------------
 
-****
 
+## Single SRAM Architecture Analysis.
 
-
-**We have also designed the peripheral circuits -- Pre-charge circuit, Isolation circuit, Sense Amplifier and Write driver circuit We have also performed the simulation of Read and Write operation**
-
-## 6T SRAM Cell
-
-Circuit diagram of 6T SRAM cell (Width of pull-up transistors = 400nm, Width of access transistors = 480nm, Width of pull-down transistors = 720nm)
-<p align="center">
-  <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image21.png" alt="Image" width="600">
-</p>
-
-
-
-
-
-
-<p align="center">
-  <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image22.png" alt="Image" width="600">
-</p>
-
-### 2. Isolation circuit
-Isolation circuit is used to isolate the sense amplifier from the bit
-lines once a small change on the bit lines is detected.
-
-<p align="center">
-  <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image23.png" alt="Image" width="600">
-</p>
-
-
-## 3.Sense Amplifier
-The sense amplifier is responsible for detecting the value stored in the
-SRAM cell during the read operation and displaying that value at the
-output.
-
-<p align="center">
-  <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image24.png" alt="Image" width="600">
-</p>
-
-
-### 4. Write driver circuit
-The write driver circuit is responsible for writing the data onto the bit lines
-BL and BL' during the write operation
-
-<p align="center">
-  <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image25.png" alt="Image" width="600">
-</p>
-
-
-
-### 5.SRAM cell along with all the peripheral devices
-
+Schematic of SRAM Architecture with all the peripheral devices connected.
 
 <p align="center">
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image26.png" alt="Image" width="600">
 </p>
 
-Timing diagram (Wrtie 1 followed by read 1, write 0 followed by read 0 )
+The timing diagram for SRAM Architecture for Wrtie logic "1" operation followed by read logic "1" and write logic "0" followed by read logic "0".
 
 <p align="center">
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image27.png" alt="Image" width="600">
 </p>
 
 
-**Q. Simulate read operation and Find the time it takes to generate 200 mV sense margin ( difference in voltage between BL and BL' after WL is  made HIGH)**
+## 4x4 (16-bit) Memory array
 
-<p align="center">
-  <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image28.png" alt="Image" width="600">
-</p>
+**A 4X4 memory array (16-bit memory array) was designed and simulations were performed for write and read operations on the memory array**
 
-**Q. Simulate the write operation and Find the time it takes to generate the data to be written on BL and BL'**
-Ans: The circuit took 0.5249ns to generate the data to be written I.e to bring changes on BL and BL'
+Schematic of the 4X4 memory array:
 
-<p align="center">
-  <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image29.png" alt="Image" width="600">
-</p>
-
-
-
-
-
-### 4x4 memory array
-**Finally, we have designed a 4X4 memory array and performed the write and read operation on a cell**
-
+Addition circuits column decoder, row decoder and row enable circuits were designed and added.
 <p align="center">
   <img src="vertopal_f4e039de98fe4b5e9e2edb8d44ba6bdc/media/image30.png" alt="Image" width="600">
 </p>
 
 
-## Conclusion :
- In our project, we have a 6T SRAM cell along with its peripherals (Pre-charge circuit, Isolation Circuit, Sense amplifier and Write driver circuit) using GPDK 180 nm technology. We have measured the Static Noise margin for the Hold  state and Read state of the SRAM cell. We have finally designed a 4x4 Memory array and have performed the Write and Read operation on each cell
+# Results and Discussion:
 
-## Acknowledgment
+-------- work in progress -----------
 
-I would like to express my sincere gratitude to Prof. Mahesh Awati for his exceptional teaching and guidance throughout the course. His support and assistance with all the lab work have been invaluable. Also, I would like to thank **PES University** for providing us with all the necessary infrastructure to this project a possibility. 
+# Conclusion :
+
+Through this project, we have learnt how to design, simulate, and analyse the SRAM Architecture { 6T SRAM cell, Pre-charge circuit, Isolation Circuit, Sense amplifier and Write driver circuit) working on  GPDK 180 nm technology using Cadence tool-chain. We have analysed the Static Noise margins, and latency for peripheral circuits. Finally, a 4x4 Memory array was designed and simulations were performed.
+The project has captured enough details of the entire design, test, and simulation phase and meets its project objective. 
+
+## Editor note:
+
+I hope this project helps explorers to accelerate their exploration around SRAM design. I hope to contribute more such repositories which aims not only to achieve the defined design objectives but also to foster a collaborative environment for knowledge sharing and continuous improvements.
+
+Please feel free to explore the repository, contribute, raise issues, and engage in discussions as we work together to achieve the project goals.
+
+# Acknowledgment
+
+I would like to express my sincere gratitude to Prof. Mahesh Awati for his exceptional teaching and guidance throughout the course. His support and assistance with all the lab work have been invaluable. Also, I would like to thank **PES University** for providing us with all the necessary infrastructure. 
 
  
